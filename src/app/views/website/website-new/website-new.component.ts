@@ -34,7 +34,7 @@ export class WebsiteNewComponent implements OnInit {
     if (newWebsite.name.trim() !== '') {
       newWebsite.developerId = this.developerId;
       this.websiteService.createWebsite(this.developerId, newWebsite);
-      // const url: any = '/user/' + this.developerId + '/website';
+      this.websites.push(newWebsite);
       this.router.navigate(['/user/' + this.developerId + '/website']);
     }
   }

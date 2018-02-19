@@ -39,14 +39,12 @@ export class PageEditComponent implements OnInit {
   updatePage(page) {
     if (page.name.trim() !== '' && page.title.trim() !== '') {
       this.pageService.updatePage(page._id, page);
-      // let url: any = '/user/' + this.userId + '/website/' + this.websiteId + '/page';
       this.router.navigate(['/user/' + this.userId + '/website/' + this.websiteId + '/page']);
     }
   }
 
   deletePage() {
     this.pageService.deletePage(this.pageId);
-    // let url: any = '/user/' + this.userId + '/website/' + this.websiteId + '/page';
     this.router.navigate(['/user/' + this.userId + '/website/' + this.websiteId + '/page']);
   }
 }

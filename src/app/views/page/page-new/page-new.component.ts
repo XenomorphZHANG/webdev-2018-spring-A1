@@ -33,7 +33,6 @@ export class PageNewComponent implements OnInit {
   createPage(page) {
     if (page.name.trim() !== '' && page.title.trim() !== '') {
       this.pageService.createPage(this.websiteId, page);
-      // let url: any = "/user/" + this.userId + "/website/" + this.websiteId + "/page"
       this.router.navigate(['/user/' + this.userId + '/website/' + this.websiteId + '/page']);
     }
   }

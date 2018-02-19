@@ -24,41 +24,41 @@ export class WidgetService {
 
   findWidgetsByPageId(pageId: String) {
     const resultSet: Widget[] = [];
-    for (let x = 0; x < this.widgets.length; x++) {
-      if (this.widgets[x].pageId === pageId) {
-        resultSet.push(this.widgets[x]);
+    for (let i = 0; i < this.widgets.length; i++) {
+      if (this.widgets[i].pageId === pageId) {
+        resultSet.push(this.widgets[i]);
       }
     }
     return resultSet;
   }
 
   findWidgetById(widgetId: String) {
-    for (let x = 0; x < this.widgets.length; x++) {
-      if (this.widgets[x]._id === widgetId) {
-        return this.widgets[x];
+    for (let i = 0; i < this.widgets.length; i++) {
+      if (this.widgets[i]._id === widgetId) {
+        return this.widgets[i];
       }
     }
   }
 
   updateWidget(widgetId: String, widget: any) {
-    for (let x = 0; x < this.widgets.length; x++) {
-      if (this.widgets[x]._id === widgetId && this.widgets[x].widgetType == widget.widgetType) {
+    for (let i = 0; i < this.widgets.length; i++) {
+      if (this.widgets[i]._id === widgetId && this.widgets[i].widgetType === widget.widgetType) {
         switch (widget.widgetType) {
           case 'HEADER':
-            this.widgets[x].text = widget.text;
-            this.widgets[x].size = widget.size;
+            this.widgets[i].text = widget.text;
+            this.widgets[i].size = widget.size;
             return true;
 
           case 'IMAGE':
-            this.widgets[x].text = widget.text;
-            this.widgets[x].url = widget.url;
-            this.widgets[x].width = widget.width;
+            this.widgets[i].text = widget.text;
+            this.widgets[i].url = widget.url;
+            this.widgets[i].width = widget.width;
             return true;
 
           case 'YOUTUBE':
-            this.widgets[x].text = widget.text;
-            this.widgets[x].url = widget.url;
-            this.widgets[x].width = widget.width;
+            this.widgets[i].text = widget.text;
+            this.widgets[i].url = widget.url;
+            this.widgets[i].width = widget.width;
             return true;
         }
       }
@@ -66,9 +66,9 @@ export class WidgetService {
   }
 
   deleteWidget(widgetId: String) {
-    for (let x = 0; x < this.widgets.length; x++) {
-      if (this.widgets[x]._id === widgetId) {
-        this.widgets.splice(x, 1);
+    for (let i = 0; i < this.widgets.length; i++) {
+      if (this.widgets[i]._id === widgetId) {
+        this.widgets.splice(i, 1);
       }
     }
   }

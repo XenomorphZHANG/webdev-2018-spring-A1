@@ -39,14 +39,12 @@ export class WebsiteEditComponent implements OnInit {
     if (updatedWebsite.name.trim() !== '') {
       updatedWebsite.developerId = this.developerId;
       this.websiteService.updateWebsite(updatedWebsite._id, updatedWebsite);
-      // const url: any = '/user/' + this.developerId + '/website';
       this.router.navigate(['/user/' + this.developerId + '/website']);
     }
   }
 
   deleteWebsite() {
     this.websiteService.deleteWebsite(this.websiteId);
-    // const url: any = '/user/' + this.developerId + '/website';
     this.router.navigate(['/user/' + this.developerId + '/website']);
   }
 }

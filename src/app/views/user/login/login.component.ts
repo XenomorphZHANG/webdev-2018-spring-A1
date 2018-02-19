@@ -14,7 +14,6 @@ export class LoginComponent implements OnInit {
 
   @ViewChild('f') loginForm: NgForm;
 
-  // properties
   username: String;
   password: String;
   errorFlag: boolean;
@@ -25,10 +24,8 @@ export class LoginComponent implements OnInit {
   ngOnInit() { }
 
   login() {
-    // fetching data from loginForm
     this.username = this.loginForm.value.username;
     this.password = this.loginForm.value.password;
-    // alert(this.username);
 
     const user: User = this.userService.findUserByCredential(this.username, this.password);
     if (user) {
