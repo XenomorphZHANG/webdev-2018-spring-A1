@@ -47,3 +47,9 @@ app.get('*', function (req, res) {
 
 
 server.listen( port , () => console.log('Running on port 5000'));
+
+// configure serve using this file
+// one way is ng serve,
+// the second way is node.server.js, through this file;
+
+// server side, using express to call;

@@ -1,0 +1,80 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid row">
+
+    <div class="navbar-text pull-left">
+      <a routerLink="/user/{{userId}}/website/{{websiteId}}/page" class="cl-text-black cl-icon-padding">
+          <span class="glyphicon glyphicon-chevron-left">
+          </span>
+      </a>
+    </div>
+    <div class="navbar-text pull-right">
+      <a routerLink="/user/{{userId}}/website/{{websiteId}}/page/{{pageId}}/widget/new" class="cl-icon-padding cl-text-black">
+          <span class="glyphicon glyphicon-plus">
+          </span>
+      </a>
+    </div>
+    <a class="navbar-brand cl-text-white cl-text-bold" routerLink="/#">
+      Widget
+    </a>
+  </div>
+</nav>
+
+<div class="container cl-container-padding">
+  <div  *ngFor="let widget of widgets">
+    <div *ngIf="widget.widgetType == 'HEADER'">
+      <div class="pull-right">
+        <a routerLink="/#" class="pull-right">
+          <span class="glyphicon glyphicon-menu-hamburger cl-widget-toolbar-hamburger"></span>
+        </a>
+        <a routerLink="/user/{{userId}}/website/{{websiteId}}/page/{{pageId}}/widget/{{widget._id}}">
+          <span class="glyphicon glyphicon-cog cl-widget-toolbar-cog"></span>
+        </a>
+      </div>
+      <h1>{{widget.text}}</h1>
+    </div>
+
+    <div *ngIf="widget.widgetType == 'IMAGE'">
+      <a routerLink="/#" class="pull-right">
+        <span class="glyphicon glyphicon-menu-hamburger cl-widget-toolbar-hamburger"></span>
+      </a>
+      <a routerLink="/user/{{userId}}/website/{{websiteId}}/page/{{pageId}}/widget/{{widget._id}}" class="pull-right">
+        <span class="glyphicon glyphicon-cog cl-widget-toolbar-cog"></span>
+      </a>
+      <img class="img-responsive img-rounded cl-widget-images"
+           src="{{widget.url}}" alt="alt" width="{{widget.width}}">
+    </div>
+
+    <div class="embed-responsive embed-responsive-16by9" *ngIf="widget.widgetType == 'YOUTUBE'">
+      <iframe width="{{widget.width}}" height="360" [src]=getURL(widget.url) frameborder="0"
+              allow="autoplay; encrypted-media" allowfullscreen></iframe>
+      <a href="#" class="pull-right">
+        <span class="glyphicon glyphicon-menu-hamburger cl-widget-toolbar-hamburger"></span>
+      </a>
+      <a routerLink="/user/{{userId}}/website/{{websiteId}}/page/{{pageId}}/widget/{{widget._id}}" class="pull-right">
+        <span class="glyphicon glyphicon-cog cl-widget-toolbar-cog"></span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+  <div class="container-fluid row">
+    <div class="pull-right navbar-text">
+
+      <a routerLink="/user/{{userId}}" class="cl-icon-padding">
+        <span class="glyphicon glyphicon-user"></span>
+      </a>
+
+    </div>
+
+    <div class="pull-left navbar-text">
+      <a routerLink="/#" class="cl-icon-padding">
+        <span class="glyphicon glyphicon-play cl-widget-gly-color"></span>
+      </a>
+      <a routerLink="/#" class="cl-icon-padding">
+        <span class="glyphicon glyphicon-eye-open cl-widget-gly-color"></span>
+      </a>
+
+    </div>
+  </div>
+</nav>

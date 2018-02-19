@@ -1,0 +1,53 @@
+
+<nav class="navbar navbar-fixed-top cl-blue-navbar">
+  <div class="container-fluid">
+    <a class="cl-text-white navbar-brand cl-text-bold cl-font-size" routerLink="/user/{{user._id}}">
+      Profile
+    </a>
+    <a class="navbar-link navbar-text pull-right cl-text-white cl-icon-padding" (click)="updateUser(user)">
+      <span class="glyphicon glyphicon-ok"></span>
+    </a>
+  </div>
+</nav>
+
+
+<div class="container">
+
+  <form>
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input [(ngModel)]="user.username" type="text" name="username" placeholder="jannunzi"
+             class="form-control" [ngModelOptions]="{standalone: true}">
+    </div>
+    <div class="form-group">
+      <label for="emailAddress">Email</label>
+      <input [(ngModel)]="user.emailAddress" type="email" id="email" placeholder="jannunzi@gmail.com"
+             class="form-control" [ngModelOptions]="{standalone: true}">
+    </div>
+    <div class="form-group">
+      <label for="firstName">First Name</label>
+      <input [(ngModel)]="user.firstName" type="text" name="firstName" placeholder="Jose"
+             class="form-control" [ngModelOptions]="{standalone: true}">
+    </div>
+    <div class="form-group">
+      <label for="lastName">Last Name</label>
+      <input [(ngModel)]="user.lastName" type="text" name="lastName" placeholder="Annunziato"
+             class="form-control" [ngModelOptions]="{standalone: true}">
+    </div>
+  </form>
+  <span class="help-block">
+    {{updateMsg}}
+  </span>
+
+  <a class="btn btn-primary btn-block"
+     routerLink="/user/{{user._id}}/website">Websites</a>
+  <a class="btn btn-danger  btn-block"
+     routerLink="/login">Logout</a>
+
+  <nav class="navbar navbar-fixed-bottom cl-blue-navbar">
+    <div class="container-fuild">
+      <a routerLink="/user/{{user._id}}" class="navbar-link navbar-text pull-right cl-text-white cl-icon-padding">
+        <span class="glyphicon glyphicon-user"></span>
+      </a>
+    </div>
+  </nav>
