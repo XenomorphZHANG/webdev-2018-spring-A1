@@ -2,9 +2,11 @@
 
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {routing} from './app.routing';
-import {FormsModule} from '@angular/forms';
-
+import { routing} from './app.routing';
+import { FormsModule} from '@angular/forms';
+import { HttpModule } from '@angular/http';
+// import { QuillEditorModule } from 'ngx-quill-editor';
+import {QuillEditorModule} from 'ngx-quill-editor/quillEditor.module';
 import { AppComponent } from './app.component';
 
 // user components
@@ -14,7 +16,6 @@ import { ProfileComponent } from './views/user/profile/profile.component';
 
 // website components
 import { WebsiteListComponent } from './views/website/website-list/website-list.component';
-import { HttpModule } from '@angular/http';
 
 
 
@@ -35,6 +36,9 @@ import { WidgetListComponent } from './views/widget/widget-list/widget-list.comp
 import { WidgetImageComponent } from './views/widget/widget-edit/widget-image/widget-image.component';
 import { WidgetYoutubeComponent } from './views/widget/widget-edit/widget-youtube/widget-youtube.component';
 import { WidgetHeaderComponent } from './views/widget/widget-edit/widget-header/widget-header.component';
+import { SortableDirective} from './sortable.directive';
+import { WidgetHtmlComponent } from './views/widget/widget-edit/widget-html/widget-html.component';
+import { WidgetTextComponent } from './views/widget/widget-edit/widget-text/widget-text.component';
 
 @NgModule({
   declarations: [
@@ -53,12 +57,17 @@ import { WidgetHeaderComponent } from './views/widget/widget-edit/widget-header/
     WidgetListComponent,
     WidgetImageComponent,
     WidgetYoutubeComponent,
-    WidgetHeaderComponent
+    WidgetHeaderComponent,
+    SortableDirective,
+    WidgetHtmlComponent,
+    WidgetTextComponent,
   ],
   imports: [
     BrowserModule,
     routing,
-    FormsModule
+    FormsModule,
+    HttpModule,
+    QuillEditorModule
   ],
   providers: [UserService, WebsiteService, WidgetService, PageService],
   bootstrap: [AppComponent]

@@ -28,10 +28,15 @@ export class WidgetEditComponent implements OnInit {
         this.websiteId = params['uid'];
         this.pageId = params['pid'];
         this.widgetId = params['wgid'];
+          this.widgetService.findWidgetById(this.widgetId).subscribe(
+              (widget: Widget) => {
+                  this.widget = widget;
+              }
+          );
       }
     );
 
-    this.widget = this.widgetService.findWidgetById(this.widgetId);
+    // this.widget = this.widgetService.findWidgetById(this.widgetId);
   }
 
 }

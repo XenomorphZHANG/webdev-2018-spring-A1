@@ -1,7 +1,7 @@
 
 <nav class="navbar navbar-fixed-top cl-blue-navbar">
   <div class="container-fluid">
-    <a class="cl-text-white navbar-brand cl-text-bold cl-font-size" routerLink="/user/{{user._id}}">
+    <a class="cl-text-white navbar-brand cl-text-bold cl-font-size">
       Profile
     </a>
     <a class="navbar-link navbar-text pull-right cl-text-white cl-icon-padding" (click)="updateUser(user)">
@@ -16,22 +16,22 @@
   <form>
     <div class="form-group">
       <label for="username">Username</label>
-      <input [(ngModel)]="user.username" type="text" name="username" placeholder="jannunzi"
+      <input [(ngModel)]="user.username" type="text" id="username" placeholder="jannunzi"
              class="form-control" [ngModelOptions]="{standalone: true}">
     </div>
     <div class="form-group">
       <label for="emailAddress">Email</label>
-      <input [(ngModel)]="user.emailAddress" type="email" id="email" placeholder="jannunzi@gmail.com"
+      <input [(ngModel)]="user.emailAddress" type="email" id="emailAddress" placeholder="jannunzi@gmail.com"
              class="form-control" [ngModelOptions]="{standalone: true}">
     </div>
     <div class="form-group">
       <label for="firstName">First Name</label>
-      <input [(ngModel)]="user.firstName" type="text" name="firstName" placeholder="Jose"
+      <input [(ngModel)]="user.firstName" type="text" id="firstName" placeholder="Jose"
              class="form-control" [ngModelOptions]="{standalone: true}">
     </div>
     <div class="form-group">
       <label for="lastName">Last Name</label>
-      <input [(ngModel)]="user.lastName" type="text" name="lastName" placeholder="Annunziato"
+      <input [(ngModel)]="user.lastName" type="text" id="lastName" placeholder="Annunziato"
              class="form-control" [ngModelOptions]="{standalone: true}">
     </div>
   </form>

@@ -28,17 +28,25 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() { }
 
-  register() {
+  register(username: String, password: String, verifyPassword: String) {
     this.errorFlag = false;
-    this.username = this.registerForm.value.username;
-    this.password = this.registerForm.value.password;
-    this.verifyPassword = this.registerForm.value.verifyPassword;
-    this.firstName = this.registerForm.value.firstName;
-    this.lastName = this.registerForm.value.lastName;
+    // this.username = this.registerForm.value.username;
+    // this.password = this.registerForm.value.password;
+    // this.verifyPassword = this.registerForm.value.verifyPassword;
+    // this.firstName = this.registerForm.value.firstName;
+    // this.lastName = this.registerForm.value.lastName;
 
-    if (this.userService.findUserByUsername(this.username) != null) {
-      this.errorMsg = 'This user is already exist, please change another username.';
-      this.errorFlag = true;
+    // if (this.userService.findUserByUsername(this.username) != null) {
+    //   this.errorMsg = 'This user is already exist, please change another username.';
+    //   this.errorFlag = true;
+    // }
+    if (username.trim() === '') {
+       this.errorMsg = 'Username cannot be empty';
+       this.errorFlag = true;
+    }
+    if (password.trim() === '') {
+       this.errorMsg = 'Password cannot be empty';
+       this.errorFlag = true;
     }
     if (this.password !== this.verifyPassword) {
       this.errorMsg = 'Please type in the same password!';
@@ -50,8 +58,19 @@ export class RegisterComponent implements OnInit {
       this.user.firstName = this.firstName;
       this.user.lastName = this.lastName;
       this.user.emailAddress = this.emailAddress;
-      this.userService.createUser(this.user);
-      this.router.navigate(['/user', this.userService.findUserByUsername(this.username)._id]);
+      // this.userService.createUser(this.user);
+      this.userService.createUser(this.user).subscribe(
+        (user: User) => {
+          this.errorFlag = false;
+          console.log(this.user);
+          this.router.navigate(['/user', user._id]);
+        },
+        (error: any) => {
+          this.errorFlag = true;
+          this.errorMsg = error;
+        }
+      );
+      // this.router.navigate(['/user', this.userService.findUserByUsername(this.username)._id]);
     }
   }
 }

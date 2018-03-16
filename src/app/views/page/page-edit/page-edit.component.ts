@@ -31,20 +31,38 @@ export class PageEditComponent implements OnInit {
         this.userId = params['uid'];
         this.pageId = params['pid'];
         this.websiteId = params['wid'];
+        this.pageService.findPageById(this.pageId).subscribe(
+          (page: Page) => {
+            this.updatedPage = page;
+          }
+        );
       }
     );
-    this.updatedPage = this.pageService.findPageById(this.pageId);
+    // this.updatedPage = this.pageService.findPageById(this.pageId);
   }
 
-  updatePage(page) {
-    if (page.name.trim() !== '' && page.title.trim() !== '') {
-      this.pageService.updatePage(page._id, page);
-      this.router.navigate(['/user/' + this.userId + '/website/' + this.websiteId + '/page']);
+  updatePage(u_page) {
+    if (u_page.name.trim() !== '' && u_page.title.trim() !== '') {
+      this.pageService.updatePage(this.pageId, u_page).subscribe(
+        (page: Page) => {
+          this.updatedPage = page;
+          const url: any = '/user/' + this.userId + '/website/' + this.websiteId + '/page';
+          this.router.navigate([url]);
+        }
+      );
     }
+      // this.pageService.updatePage(page._id, page);
+      // this.router.navigate(['/user/' + this.userId + '/website/' + this.websiteId + '/page']);
   }
 
   deletePage() {
-    this.pageService.deletePage(this.pageId);
-    this.router.navigate(['/user/' + this.userId + '/website/' + this.websiteId + '/page']);
+    // this.pageService.deletePage(this.pageId);
+    // this.router.navigate(['/user/' + this.userId + '/website/' + this.websiteId + '/page']);
+    this.pageService.deletePage(this.pageId).subscribe(
+      (page: Page) => {
+        const url = '/user/' + this.userId + '/website/' + this.websiteId + '/page';
+        this.router.navigate([url]);
+      }
+    );
   }
 }

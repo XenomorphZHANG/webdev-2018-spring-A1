@@ -20,7 +20,8 @@
 </nav>
 
 <div class="container cl-container-padding">
-  <div  *ngFor="let widget of widgets">
+    <div id="sortable" class="cl-body-padding" appSortable (newIndexes)="reorderWidgets($event)">
+  <div  *ngFor="let widget of widgets" ngSwitch="widget.widgetType">
     <div *ngIf="widget.widgetType == 'HEADER'">
       <div class="pull-right">
         <a routerLink="/#" class="pull-right">
@@ -30,9 +31,30 @@
           <span class="glyphicon glyphicon-cog cl-widget-toolbar-cog"></span>
         </a>
       </div>
-      <h1>{{widget.text}}</h1>
+      <h1>HEADER: {{widget.text}}</h1>
     </div>
-
+    <div *ngIf="widget.widgetType == 'HTML'">
+      <div class="pull-right">
+        <a routerLink="/#" class="pull-right">
+          <span class="glyphicon glyphicon-menu-hamburger cl-widget-toolbar-hamburger"></span>
+        </a>
+        <a routerLink="/user/{{userId}}/website/{{websiteId}}/page/{{pageId}}/widget/{{widget._id}}">
+          <span class="glyphicon glyphicon-cog cl-widget-toolbar-cog"></span>
+        </a>
+      </div>
+      <h1>HTML: {{widget.text}}</h1>
+    </div>
+    <div *ngIf="widget.widgetType == 'TEXT'">
+      <div class="pull-right">
+        <a routerLink="/#" class="pull-right">
+          <span class="glyphicon glyphicon-menu-hamburger cl-widget-toolbar-hamburger"></span>
+        </a>
+        <a routerLink="/user/{{userId}}/website/{{websiteId}}/page/{{pageId}}/widget/{{widget._id}}">
+          <span class="glyphicon glyphicon-cog cl-widget-toolbar-cog"></span>
+        </a>
+      </div>
+      <h1>TEXT: {{widget.text}}</h1>
+    </div>
     <div *ngIf="widget.widgetType == 'IMAGE'">
       <a routerLink="/#" class="pull-right">
         <span class="glyphicon glyphicon-menu-hamburger cl-widget-toolbar-hamburger"></span>

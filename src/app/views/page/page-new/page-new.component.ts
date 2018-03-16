@@ -30,10 +30,16 @@ export class PageNewComponent implements OnInit {
     );
   }
 
-  createPage(page) {
-    if (page.name.trim() !== '' && page.title.trim() !== '') {
-      this.pageService.createPage(this.websiteId, page);
-      this.router.navigate(['/user/' + this.userId + '/website/' + this.websiteId + '/page']);
+  createPage(new_page) {
+    if (new_page.name.trim() !== '' && new_page.title.trim() !== '') {
+      // this.pageService.createPage(this.websiteId, page);
+      // this.router.navigate(['/user/' + this.userId + '/website/' + this.websiteId + '/page']);
+      this.pageService.createPage(this.websiteId, new_page).subscribe(
+        (page: Page) => {
+          const url: any = '/user/' + this.userId + '/website/' + this.websiteId + '/page';
+          this.router.navigate([url]);
+        }
+      );
     }
   }
 

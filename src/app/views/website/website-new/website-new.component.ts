@@ -20,22 +20,38 @@ export class WebsiteNewComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit() {
+    // this.activatedRoute.params.subscribe(
+    //   (developerId: any) => {
+    //     this.developerId = developerId['uid'];
+    //   }
+    // );
+    //
+    // this.websites = this.websiteService.findWebsitesByUser(this.developerId);
     this.activatedRoute.params.subscribe(
-      (developerId: any) => {
-        this.developerId = developerId['uid'];
+      (params: any) => {
+        this.developerId = params.uid;
+        this.websiteService.findAllWebsitesByUser(this.developerId).subscribe(
+          (websites: Website[]) => {
+            this.websites = websites;
+          }
+        );
       }
     );
-
-    this.websites = this.websiteService.findWebsitesByUser(this.developerId);
     console.log(this.websites);
   }
 
   createWebsite(newWebsite) {
     if (newWebsite.name.trim() !== '') {
       newWebsite.developerId = this.developerId;
-      this.websiteService.createWebsite(this.developerId, newWebsite);
-      this.websites.push(newWebsite);
-      this.router.navigate(['/user/' + this.developerId + '/website']);
+      // this.websiteService.createWebsite(this.developerId, newWebsite);
+      // this.websites.push(newWebsite);
+      // this.router.navigate(['/user/' + this.developerId + '/website']);
+      this.websiteService.createWebsite(this.developerId, newWebsite).subscribe(
+        (website: Website) => {
+          const url: any = '/user/' + this.developerId + '/website';
+          this.router.navigate([url]);
+        },
+      );
     }
   }
 }
