@@ -28,8 +28,8 @@ module.exports = function (app) {
 
     function findAllPagesForWebsite(req, res) {
         var websiteId = req.params.websiteId;
-        let resultSet = [];
-        for (let x = 0; x < pages.length; x++) {
+        var resultSet = [];
+        for (var x = 0; x < pages.length; x++) {
             if (pages[x].websiteId === websiteId) {
                 resultSet.push(pages[x]);
             }
@@ -63,7 +63,7 @@ module.exports = function (app) {
 
     function deletePage(req, res) {
         var pageId = req.params.pageId;
-        for (let x = 0; x < pages.length; x++) {
+        for (var x = 0; x < pages.length; x++) {
             if (pages[x]._id === pageId) {
                 res.json(pages[x]);
                 pages.splice(x, 1);

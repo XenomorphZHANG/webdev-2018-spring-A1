@@ -32,8 +32,8 @@ module.exports = function (app) {
 
     function findAllWebsitesForUser(req, res) {
         var userId = req.params.userId;
-        let resultSet = [];
-        for (let x = 0; x < websites.length; x++) {
+        var resultSet = [];
+        for (var x = 0; x < websites.length; x++) {
             if (websites[x].developerId === userId) {
                 resultSet.push(websites[x]);
             }
@@ -70,7 +70,7 @@ module.exports = function (app) {
 
     function deleteWebsite(req, res) {
         var websiteId = req.params.websiteId;
-        for (let x = 0; x < websites.length; x++) {
+        for (var x = 0; x < websites.length; x++) {
             if (websites[x]._id === websiteId) {
                 res.json(websites[x]);
                 websites.splice(x, 1);

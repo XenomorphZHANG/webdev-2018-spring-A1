@@ -150,3 +150,8 @@ a:hover{
 .cl-visible {
   visibility: visible;
 }
+
+.extra-padding {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}

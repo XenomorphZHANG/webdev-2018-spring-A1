@@ -20,7 +20,7 @@
 </nav>
 
 <div class="container-fluid">
-  <form>
+  <!--<form>-->
     <div class="form-group">
       <label for="html-name">Name</label>
       <!--<input type="text" class="form-control" id="heading-name" placeholder="Name">-->
@@ -33,10 +33,9 @@
              <!--[ngModelOptions]="{standalone: true}">-->
       <!--<quill-editor [(ngModel)]="widget.text" id="html"-->
                     <!--[ngModelOptions]="{standalone: true}"></quill-editor>-->
-      <quill-editor [(ngModel)]="widget.text" type="text" class="form-control" id="html" placeholder="Name"
-                    [ngModelOptions]="{standalone: true}"></quill-editor>
+      <quill-editor [(ngModel)]="widget.text" id="html"></quill-editor>
     </div>
-  </form>
+  <!--</form>-->
   <a class="btn btn-danger  btn-block" (click)="deleteWidget()">Delete</a>
 </div>
 
