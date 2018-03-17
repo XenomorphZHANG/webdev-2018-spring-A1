@@ -60,7 +60,7 @@ module.exports = function (app) {
                 widget = widgets[i];
             }
         }
-        widget.url = filename;
+        widget.url = 'uploads/' + filename;
         res.redirect(baseUrl + "/user/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget/" + widgetId);
     }
 

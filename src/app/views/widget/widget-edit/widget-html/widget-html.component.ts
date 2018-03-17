@@ -14,10 +14,6 @@ export class WidgetHtmlComponent implements OnInit {
     websiteId: String;
     pageId: String;
     widgetId: String;
-    editorContent: String;
-    public editorOptions = {
-        placeholder: 'insert content...'
-    };
 
     constructor(
         private widgetService: WidgetService, private activatedRoute: ActivatedRoute,
@@ -38,8 +34,6 @@ export class WidgetHtmlComponent implements OnInit {
         this.widgetService.findWidgetById(this.widgetId).subscribe(
             (widget: Widget) => {
                 this.widget = widget;
-                this.editorContent = this.widget.text;
-                console.log(this.editorContent);
             }
         );
     }
@@ -64,10 +58,5 @@ export class WidgetHtmlComponent implements OnInit {
                 this.router.navigate([url]);
             }
         );
-    }
-
-    onContentChanged({ quill, html, text }) {
-        // console.log('quill content is changed!', quill, html, text);
-        this.widget.text = html;
     }
 }

@@ -2,7 +2,7 @@
   <div class="container-fluid row">
 
     <div class="navbar-text pull-left">
-      <a routerLink=".." class="cl-text-black cl-icon-padding">
+      <a routerLink="/user/{{userId}}/website/{{websiteId}}/page/{{pageId}}/widget" class="cl-text-black cl-icon-padding">
           <span class="glyphicon glyphicon-chevron-left">
           </span>
       </a>
@@ -33,13 +33,8 @@
              <!--[ngModelOptions]="{standalone: true}">-->
       <!--<quill-editor [(ngModel)]="widget.text" id="html"-->
                     <!--[ngModelOptions]="{standalone: true}"></quill-editor>-->
-        <quill-editor [(ngModel)]="editorContent"
-                      [options]="editorOptions"
-                      (change)="onContentChanged($event)"
-                      id="html"
-                      name="editor"
-                      [ngModelOptions]="{standalone: true}">
-        </quill-editor>
+      <quill-editor [(ngModel)]="widget.text" type="text" class="form-control" id="html" placeholder="Name"
+                    [ngModelOptions]="{standalone: true}"></quill-editor>
     </div>
   </form>
   <a class="btn btn-danger  btn-block" (click)="deleteWidget()">Delete</a>
