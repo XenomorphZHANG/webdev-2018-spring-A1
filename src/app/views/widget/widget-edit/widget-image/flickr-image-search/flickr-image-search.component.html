@@ -1,14 +1,12 @@
-<!--Header-->
+
 <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container-fluid">
-    <!--Left arrow-->
     <p class="navbar-text pull-left">
       <a routerLink="../.." class="navbar-link">
         <span class="glyphicon glyphicon-chevron-left"></span>
       </a>
     </p>
     <span>
-      <!--heading on the nav bar-->
       <p class="navbar-header pull-left">
         <a class="navbar-brand thick">
           <b>Search Image</b>
@@ -18,7 +16,6 @@
   </div>
 </nav>
 
-<!--!!Material on the page!!-->
 <div class="container cl-body-padding">
   <div class="input-group">
     <input [(ngModel)]="searchText" type="text" class="form-control">
@@ -44,8 +41,6 @@
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
   <div class="container-fluid">
-    <!--Play Symbol-->
-    <!--User Symbol-->
     <p class="navbar-text pull-right">
       <a routerLink="/user/{{userId}}">
         <span class="glyphicon glyphicon-user"></span>

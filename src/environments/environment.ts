@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  baseUrl : 'https://test-for-cs5610.herokuapp.com'
+  baseUrl : ''
 };
