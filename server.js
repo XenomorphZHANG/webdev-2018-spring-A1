@@ -5,8 +5,11 @@ const path = require('path');
 const http = require('http');
 
 // var db = mongoose.connect('mongodb://chrismzyy@hotmail.com:135246Abcd@ds263847.mlab.com:63847/heroku_khn0t993');
+
 var connectionString = 'mongodb://yiyangzhang:135246abcd@ds263847.mlab.com:63847/heroku_khn0t993';
+// var connectionString = 'mongodb://localhost:27017/webdev';
 var mongoose = require("mongoose");
+
 mongoose.createConnection(connectionString);
 
 app.use(bodyParser.json());
