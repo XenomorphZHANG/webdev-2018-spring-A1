@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { PageService } from '../../../services/page.service.client';
 import { Page } from '../../../models/page.model.client';
+import {WebsiteService} from '../../../services/website.service.client';
 
 @Component({
   selector: 'app-page-new',
@@ -13,19 +14,38 @@ export class PageNewComponent implements OnInit {
 
   userId: String;
   websiteId: String;
-  newPage: Page = {_id: '', name: '', websiteId: '', title: ''};
+  newPage: any = {};
 
   constructor(
     private pageService: PageService,
     private activatedRoute: ActivatedRoute,
+    private websiteService: WebsiteService,
     private router: Router
   ) { }
 
   ngOnInit() {
+    console.log('test if can tra')
+    // this.activatedRoute.params.subscribe(
+    //   (params: any) => {
+    //     this.userId = params['uid'];
+    //     this.websiteId = params['wid'];
+    //   }
+    // );
     this.activatedRoute.params.subscribe(
-      (params: any) => {
-        this.userId = params['uid'];
-        this.websiteId = params['wid'];
+      params => {
+        this.websiteService.findWebsiteById(params.wid).subscribe(
+          (website: any) => {
+            if (website._user === params.uid) {
+              this.websiteId = params.wid;
+              this.userId = params.uid;
+            } else {
+              console.log('User ID does not match.');
+            }
+          },
+          (error: any) => {
+            console.log(error);
+          }
+        );
       }
     );
   }
@@ -35,7 +55,7 @@ export class PageNewComponent implements OnInit {
       // this.pageService.createPage(this.websiteId, page);
       // this.router.navigate(['/user/' + this.userId + '/website/' + this.websiteId + '/page']);
       this.pageService.createPage(this.websiteId, new_page).subscribe(
-        (page: Page) => {
+        (page: any) => {
           const url: any = '/user/' + this.userId + '/website/' + this.websiteId + '/page';
           this.router.navigate([url]);
         }

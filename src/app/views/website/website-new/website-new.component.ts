@@ -11,9 +11,9 @@ import { Website } from '../../../models/website.model.client';
 })
 export class WebsiteNewComponent implements OnInit {
 
-  developerId: String;
-  newWebsite: Website = { _id: '', name: '', developerId: '', description: '' };
-  websites: Website[] = [];
+  userId: String;
+  newWebsite: any = {};
+  websites: any[];
 
   constructor(private websiteService: WebsiteService,
               private activatedRoute: ActivatedRoute,
@@ -29,9 +29,9 @@ export class WebsiteNewComponent implements OnInit {
     // this.websites = this.websiteService.findWebsitesByUser(this.developerId);
     this.activatedRoute.params.subscribe(
       (params: any) => {
-        this.developerId = params.uid;
-        this.websiteService.findAllWebsitesByUser(this.developerId).subscribe(
-          (websites: Website[]) => {
+        this.userId = params.uid;
+        this.websiteService.findAllWebsitesByUser(this.userId).subscribe(
+          (websites: any[]) => {
             this.websites = websites;
           }
         );
@@ -41,14 +41,17 @@ export class WebsiteNewComponent implements OnInit {
   }
 
   createWebsite(newWebsite) {
-    if (newWebsite.name.trim() !== '') {
-      newWebsite.developerId = this.developerId;
+    if (newWebsite.name !== null
+      && newWebsite.description !== null
+      && newWebsite.name.trim() !== ''
+      && newWebsite.description.trim() !== '') {
+      // newWebsite.developerId = this.developerId;
       // this.websiteService.createWebsite(this.developerId, newWebsite);
       // this.websites.push(newWebsite);
       // this.router.navigate(['/user/' + this.developerId + '/website']);
-      this.websiteService.createWebsite(this.developerId, newWebsite).subscribe(
-        (website: Website) => {
-          const url: any = '/user/' + this.developerId + '/website';
+      this.websiteService.createWebsite(this.userId, newWebsite).subscribe(
+        (website: any) => {
+          const url: any = '/user/' + this.userId + '/website';
           this.router.navigate([url]);
         },
       );

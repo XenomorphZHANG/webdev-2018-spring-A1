@@ -1,14 +1,35 @@
-
+//
+//
+// var mongoose = require('mongoose');
+//
+// var UserSchema = mongoose.Schema ({
+//   username: String,
+//   password: String,
+//   firstName: String,
+//   website: [WebsiteSchema],
+//   }, {collection:'user'} /// can be flexible but needed to be consistent
+//
+// );
+//
+// module.exports = UserSchema;
 
 var mongoose = require('mongoose');
 
-var UserSchema = mongoose.Schema ({
+var UserSchema = mongoose.Schema({
   username: String,
   password: String,
   firstName: String,
-  website: [WebsiteSchema],
-  }, {collection:'user'} /// can be flexible but needed to be consistent
-
-);
+  lastName: String,
+  email: String,
+  phone: String,
+  websites: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Website'
+  }],
+  dateCreated: {
+    type: Date,
+    default: Date.now
+  }
+}, { collection: 'user' });
 
 module.exports = UserSchema;

@@ -14,13 +14,13 @@ export class RegisterComponent implements OnInit {
 
   @ViewChild('f') registerForm: NgForm;
 
-  user: User = {_id: '', username: '', password: '', firstName: '', lastName: '', emailAddress: ''};
+  user: any = {};
   username: String;
   password: String;
   verifyPassword: String;
   firstName: String;
   lastName: String;
-  emailAddress: String;
+  email: String;
   errorFlag: boolean;
   errorMsg: String;
 
@@ -57,7 +57,7 @@ export class RegisterComponent implements OnInit {
       this.user.password = this.password;
       this.user.firstName = this.firstName;
       this.user.lastName = this.lastName;
-      this.user.emailAddress = this.emailAddress;
+      this.user.email = this.email;
       // this.userService.createUser(this.user);
       this.userService.createUser(this.user).subscribe(
         (user: User) => {

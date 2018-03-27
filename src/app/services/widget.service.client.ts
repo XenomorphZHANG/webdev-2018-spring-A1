@@ -21,7 +21,7 @@ export class WidgetService {
   //   { _id: '789', widgetType: 'HTML', pageId: '321', size: '<p>Lorem ipsum</p>', text: '', url: '', width: '' }
   // ];
 
-  createWidget(pageId: String, widget: any) {
+  createWidget(pageId: String, widget: Widget) {
     // widget._id = Math.random().toString();
     // widget.pageId = pageId;
     // this.widgets.push(widget);

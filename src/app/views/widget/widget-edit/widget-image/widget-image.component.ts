@@ -362,7 +362,7 @@ export class WidgetImageComponent implements OnInit {
     name: String;
     text: String;
     url: String;
-    widget: Widget;
+    widget: any = {};
     baseUrl: String = environment.baseUrl;
 
     constructor(private activatedRoute: ActivatedRoute, private widgetService: WidgetService, private route: Router) {}
@@ -385,7 +385,7 @@ export class WidgetImageComponent implements OnInit {
             new_widget.widgetType = 'IMAGE';
         }
         this.widgetService.createWidget(this.pageID, new_widget).subscribe(
-            (widget: Widget) => {
+            (widget: any) => {
                 this.widget = widget;
                 console.log(this.widget);
             });
@@ -412,7 +412,7 @@ export class WidgetImageComponent implements OnInit {
                     // this.widget = new Widget(undefined, 'IMAGE', this.pageID, '', '', '', '');
                 } else {
                     this.widgetService.findWidgetById(this.wgid).subscribe(
-                        (widget: Widget) => {
+                        (widget: any) => {
                             this.widget = widget;
                             console.log(this.widget);
                         });

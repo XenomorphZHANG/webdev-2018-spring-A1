@@ -15,7 +15,8 @@ export class WidgetListComponent implements OnInit {
   userId: String;
   websiteId: String;
   pageId: String;
-  widgets: Widget[];
+  widgets = [{}];
+  widget = {};
 
   constructor(
     private widgetService: WidgetService,
@@ -36,7 +37,7 @@ export class WidgetListComponent implements OnInit {
         this.pageId = params['pid'];
           console.log(this.widgets);
           this.widgetService.findAllWidgetsForPage(this.pageId).subscribe(
-              (widgets: Widget[]) => {
+              (widgets: any[]) => {
                   this.widgets = widgets;
               });
       }

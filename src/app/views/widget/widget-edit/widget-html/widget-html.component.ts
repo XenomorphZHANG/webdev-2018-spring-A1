@@ -9,7 +9,7 @@ import {Widget} from '../../../../models/widget.model.client';
   styleUrls: ['./widget-html.component.css']
 })
 export class WidgetHtmlComponent implements OnInit {
-    widget: Widget;
+    widget: any = {};
     userId: String;
     websiteId: String;
     pageId: String;
@@ -32,7 +32,7 @@ export class WidgetHtmlComponent implements OnInit {
 
         // this.widget = this.widgetService.findWidgetById(this.widgetId);
         this.widgetService.findWidgetById(this.widgetId).subscribe(
-            (widget: Widget) => {
+            (widget: any) => {
                 this.widget = widget;
             }
         );
@@ -42,7 +42,7 @@ export class WidgetHtmlComponent implements OnInit {
         // this.widgetService.updateWidget(widget._id, widget);
         // this.router.navigate(['/user/' + this.userId + '/website/' + this.websiteId + '/page/' + this.pageId + '/widget']);
         this.widgetService.updateWidget(this.widgetId, updatedwidget).subscribe(
-            (widget: Widget) => {
+            (widget: any) => {
                 const url: any = '/user/' + this.userId + '/website/' + this.websiteId + '/page/' + this.pageId + '/widget';
                 this.router.navigate([url]);
             }
@@ -53,7 +53,7 @@ export class WidgetHtmlComponent implements OnInit {
         // this.widgetService.deleteWidget(this.widgetId);
         // this.router.navigate(['/user/' + this.userId + '/website/' + this.websiteId + '/page/' + this.pageId + '/widget']);
         this.widgetService.deleteWidget(this.widgetId).subscribe(
-            (widget: Widget) => {
+            (widget: any) => {
                 const url: any = '/user/' + this.userId + '/website/' + this.websiteId + '/page/' + this.pageId + '/widget';
                 this.router.navigate([url]);
             }

@@ -22,7 +22,7 @@
 <div class="container cl-container-padding">
     <div id="sortable" class="cl-body-padding" appSortable (newIndexes)="reorderWidgets($event)">
   <div  *ngFor="let widget of widgets" ngSwitch="widget.widgetType">
-    <div *ngIf="widget.widgetType == 'HEADER'">
+    <div *ngIf="widget.type == 'HEADER'">
       <div class="pull-right">
         <a routerLink="/#" class="pull-right">
           <span class="glyphicon glyphicon-menu-hamburger cl-widget-toolbar-hamburger"></span>
@@ -33,7 +33,7 @@
       </div>
       <h1>HEADER: {{widget.text}}</h1>
     </div>
-    <div *ngIf="widget.widgetType == 'HTML'">
+    <div *ngIf="widget.type == 'HTML'">
       <div class="pull-right">
         <a routerLink="/#" class="pull-right">
           <span class="glyphicon glyphicon-menu-hamburger cl-widget-toolbar-hamburger"></span>
@@ -45,8 +45,7 @@
       <div [innerHTML]="widget.text"></div>
     </div>
 
-
-    <div *ngIf="widget.widgetType == 'TEXT'">
+    <div *ngIf="widget.type == 'TEXT'">
       <div class="pull-right">
         <a routerLink="/#" class="pull-right">
           <span class="glyphicon glyphicon-menu-hamburger cl-widget-toolbar-hamburger"></span>
@@ -55,10 +54,46 @@
           <span class="glyphicon glyphicon-cog cl-widget-toolbar-cog"></span>
         </a>
       </div>
-      <h1>TEXT: {{widget.text}}</h1>
-    </div>
+      <!--<h1>TEXT: {{widget.text}}</h1>-->
 
-    <div *ngIf="widget.widgetType == 'IMAGE'">
+      <!--<div *ngIf="widget.formatted">-->
+        <!--<quill-editor [(ngModel)]="widget.text" name="text"></quill-editor>-->
+      <!--</div>-->
+
+      <!--<input *ngIf="!widget.formatted && (!widget.rows || widget.rows===1)"-->
+             <!--placeholder="{{widget.placeholder}}" class="form-control"/>-->
+
+      <!--<textarea *ngIf="!widget.formatted && (widget.rows > 1)"-->
+                <!--rows="{{widget.rows}}" placeholder="{{widget.placeholder}}"-->
+                <!--class="form-control">{{widget.text}}</textarea>-->
+    <!--</div>-->
+          <div *ngIf="widget.formatted">
+            <quill-editor [(ngModel)]="widget.text" name="text"></quill-editor>
+          </div>
+
+          <input *ngIf="!widget.formatted && (!widget.rows || widget.rows===1)"
+                 placeholder="{{widget.placeholder}}" class="form-control"/>
+
+          <textarea *ngIf="!widget.formatted && (widget.rows > 1)"
+                    rows="{{widget.rows}}" placeholder="{{widget.placeholder}}"
+                    class="form-control">{{widget.text}}</textarea>
+        </div>
+
+
+
+        <!--<div *ngIf="widget.type == 'TEXT'">-->
+      <!--<div class="pull-right">-->
+        <!--<a routerLink="/#" class="pull-right">-->
+          <!--<span class="glyphicon glyphicon-menu-hamburger cl-widget-toolbar-hamburger"></span>-->
+        <!--</a>-->
+        <!--<a routerLink="/user/{{userId}}/website/{{websiteId}}/page/{{pageId}}/widget/{{widget._id}}">-->
+          <!--<span class="glyphicon glyphicon-cog cl-widget-toolbar-cog"></span>-->
+        <!--</a>-->
+      <!--</div>-->
+      <!--<h1>TEXT: {{widget.text}}</h1>-->
+    <!--</div>-->
+
+    <div *ngIf="widget.type == 'IMAGE'">
       <a routerLink="/#" class="pull-right">
         <span class="glyphicon glyphicon-menu-hamburger cl-widget-toolbar-hamburger"></span>
       </a>
@@ -69,7 +104,7 @@
            src="{{widget.url}}" alt="alt" width="{{widget.width}}">
     </div>
 
-    <div class="embed-responsive embed-responsive-16by9" *ngIf="widget.widgetType == 'YOUTUBE'">
+    <div class="embed-responsive embed-responsive-16by9 youtube-widget" *ngIf="widget.type == 'YOUTUBE'">
       <iframe width="{{widget.width}}" height="360" [src]=getURL(widget.url) frameborder="0"
               allow="autoplay; encrypted-media" allowfullscreen></iframe>
       <a href="#" class="pull-right">
