@@ -4,8 +4,8 @@ const app = express();
 const path = require('path');
 const http = require('http');
 
-// var connectionString = 'mongodb://root:password@ds115768.mlab.com:15768/heroku_8xzzq2rc'; // for heroku
-var connectionString = 'mongodb://localhost:27017/webdev'; // for local
+var db = mongoose.connect('mongodb://chrismzyy@hotmail.com:135246Abcd@ds263847.mlab.com:63847/heroku_khn0t993');
+// var connectionString = 'mongodb://localhost:27017/webdev';
 var mongoose = require("mongoose");
 mongoose.createConnection(connectionString);
 
