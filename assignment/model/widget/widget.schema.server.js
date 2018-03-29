@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var WidgetSchema = mongoose.Schema({
   _page: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Page'
+    ref: 'PageModel'
   },
   type: {
     type: String,

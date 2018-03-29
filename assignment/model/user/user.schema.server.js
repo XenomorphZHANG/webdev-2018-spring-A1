@@ -24,7 +24,7 @@ var UserSchema = mongoose.Schema({
   phone: String,
   websites: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Website'
+    ref: 'WebsiteModel'
   }],
   dateCreated: {
     type: Date,

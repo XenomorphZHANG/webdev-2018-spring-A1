@@ -2,7 +2,7 @@
   <div class="container-fluid row">
 
     <div class="navbar-text pull-left">
-      <a routerLink="/user/{{userId}}/website/{{websiteId}}/page/{{pageId}}/widget" class="cl-text-black cl-icon-padding">
+      <a routerLink=".." class="cl-text-black cl-icon-padding">
           <span class="glyphicon glyphicon-chevron-left">
           </span>
       </a>
@@ -70,7 +70,7 @@
 
       <div class="form-group">
         <label for="text-rows">Rows</label>
-        <input [(ngModel)]="widget.rows" name="rows" class="form-control" type="number" id="text-rows"/>
+        <input [(ngModel)]="widget.rows" name="rows" class="form-control" type="number" id="text-rows" [ngModelOptions]="{standalone: true}"/>
         <label for="Name">Name</label>
         <div>
           <input [(ngModel)]="widget.name"
@@ -78,7 +78,8 @@
                  class="form-control"
                  id="Name"
                  name="name"
-                 placeholder="Name">
+                 placeholder="Name"
+                 [ngModelOptions]="{standalone: true}"/>
         </div>
       </div>
     </div>
@@ -94,18 +95,23 @@
                <!--[ngModelOptions]="{standalone: true}"/>-->
       <!--</span>-->
       <label for="text-placeholder">Placeholder</label>
-      <input [(ngModel)]="widget.placeholder" class="form-control" id="text-placeholder" placeholder="Placeholder" required/>
+      <input [(ngModel)]="widget.placeholder" class="form-control" id="text-placeholder" placeholder="Placeholder" required
+             [ngModelOptions]="{standalone: true}"/>
+
       <p></p>
       <div class="input-group">
         <input type="text"
                readonly
                value="Formatted"
                class="form-control"/>
-        <span class="input-group-addon">
-     <input [(ngModel)]="widget.formatted"
-            type="checkbox"/>
-      </span>
+          <span class="input-group-addon">
+        <input [(ngModel)]="widget.formatted"
+               type="checkbox"
+               [ngModelOptions]="{standalone: true}"/>
+          </span>
       </div>
+      <p></p>
+
     </div>
   </form>
   <a class="btn btn-danger  btn-block" (click)="deleteWidget()">Delete</a>

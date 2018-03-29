@@ -1,44 +1,53 @@
 var mongoose = require('mongoose');
 var WidgetSchema = require('./widget.schema.server.js');
-var Widget = mongoose.model('Widget', WidgetSchema);
+var WidgetModel = mongoose.model('Widget', WidgetSchema);
+var PageModel = require("../page/page.model.server");
 
-Widget.createWidget = createWidget;
-Widget.findAllWidgetsForPage = findAllWidgetsForPage;
-Widget.findWidgetById = findWidgetById;
-Widget.updateWidget = updateWidget;
-Widget.deleteWidget = deleteWidget;
-Widget.reorderWidgets = reorderWidgets;
-Widget.resetWidgets = resetWidgets;
+WidgetModel.createWidget = createWidget;
+WidgetModel.findAllWidgetsForPage = findAllWidgetsForPage;
+WidgetModel.findWidgetById = findWidgetById;
+WidgetModel.updateWidget = updateWidget;
+WidgetModel.deleteWidget = deleteWidget;
+WidgetModel.reorderWidgets = reorderWidgets;
+WidgetModel.resetWidgets = resetWidgets;
 
-module.exports = Widget;
+module.exports = WidgetModel;
 
-function createWidget(pageId, widget) {
+
+function createWidget(pageId, widget)  {
   widget._page = pageId;
-  return Widget.create(widget);
+  return WidgetModel.create(widget)
+    .then(function(responseWidget){
+      PageModel.findPageById(pageId)
+        .then(function(page){
+          page.widgets.push(responseWidget);
+          return page.save();
+        });
+      return responseWidget;
+    });
 }
-
 function findAllWidgetsForPage(pageId) {
-  return Widget.find({ _page: pageId });
+  return WidgetModel.find({ _page: pageId });
 }
 
 function findWidgetById(widgetId) {
-  return Widget.findById(widgetId);
+  return WidgetModel.findById(widgetId);
 }
 
 function updateWidget(widgetId, widget) {
-  return Widget.findByIdAndUpdate(widgetId, widget);
+  return WidgetModel.findByIdAndUpdate(widgetId, widget);
 }
 
 function deleteWidget(widgetId) {
-  Widget.findById(widgetId, function (err, foundWidget) {
+  WidgetModel.findById(widgetId, function (err, foundWidget) {
     var index = foundWidget.position;
     resetWidgets(index, foundWidget._page);
   });
-  return Widget.findByIdAndRemove(widgetId);
+  return WidgetModel.findByIdAndRemove(widgetId);
 }
 
 function resetWidgets(index, pageId) {
-  Widget.find({ _page: pageId }, function (err, widgets) {
+  WidgetModel.find({ _page: pageId }, function (err, widgets) {
     widgets.forEach(function (widget) {
       if (widget.position > index) {
         widget.position--;
@@ -49,7 +58,7 @@ function resetWidgets(index, pageId) {
 }
 
 function reorderWidgets(pageId, start, end) {
-  return Widget.find({ _page: pageId }, function (err, widgets) {
+  return WidgetModel.find({ _page: pageId }, function (err, widgets) {
     widgets.forEach(function (widget) {
       if (start < end) {
         if (widget.position === start) {

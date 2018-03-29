@@ -12,37 +12,37 @@
 // }
 var mongoose = require('mongoose');
 var UserSchema = require('./user.schema.server.js');
-var User = mongoose.model('User', UserSchema);
+var UserModel = mongoose.model('User', UserSchema);
 
-User.createUser = createUser;
-User.findUserById = findUserById;
-User.findUserByUsername = findUserByUsername;
-User.findUserByCredentials = findUserByCredentials;
-User.updateUser = updateUser;
-User.deleteUser = deleteUser;
+UserModel.createUser = createUser;
+UserModel.findUserById = findUserById;
+UserModel.findUserByUsername = findUserByUsername;
+UserModel.findUserByCredentials = findUserByCredentials;
+UserModel.updateUser = updateUser;
+UserModel.deleteUser = deleteUser;
 
-module.exports = User;
+module.exports = UserModel;
 
 function createUser(user) {
-  return User.create(user);
+  return UserModel.create(user);
 }
 
 function findUserById(userId) {
-  return User.findById(userId);
+  return UserModel.findById(userId);
 }
 
 function findUserByUsername(username) {
-  return User.findOne({ username: username });
+  return UserModel.findOne({ username: username });
 }
 
 function findUserByCredentials(username, password) {
-  return User.findOne({ username: username, password: password });
+  return UserModel.findOne({ username: username, password: password });
 }
 
 function updateUser(userId, user) {
-  return User.findByIdAndUpdate(userId, user);
+  return UserModel.findByIdAndUpdate(userId, user);
 }
 
 function deleteUser(userId) {
-  return User.findByIdAndRemove(userId);
+  return UserModel.findByIdAndRemove(userId);
 }
