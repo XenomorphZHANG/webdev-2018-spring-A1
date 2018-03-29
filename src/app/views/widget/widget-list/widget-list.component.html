@@ -8,7 +8,7 @@
       </a>
     </div>
     <div class="navbar-text pull-right">
-      <a routerLink="/user/{{userId}}/website/{{websiteId}}/page/{{pageId}}/widget/new" class="cl-icon-padding cl-text-black">
+      <a routerLink="./new" class="cl-icon-padding cl-text-black">
           <span class="glyphicon glyphicon-plus">
           </span>
       </a>
@@ -27,7 +27,7 @@
         <a routerLink="/#" class="pull-right">
           <span class="glyphicon glyphicon-menu-hamburger cl-widget-toolbar-hamburger"></span>
         </a>
-        <a routerLink="/user/{{userId}}/website/{{websiteId}}/page/{{pageId}}/widget/{{widget._id}}">
+        <a routerLink="{{widget._id}}">
           <span class="glyphicon glyphicon-cog cl-widget-toolbar-cog"></span>
         </a>
       </div>
@@ -43,7 +43,7 @@
     </div>
     <div *ngIf="widget.type == 'HTML'">
       <div class="pull-right">
-        <a routerLink="/#" class="pull-right">
+        <a routerLink="{{widget._id}}" class="pull-right">
           <span class="glyphicon glyphicon-menu-hamburger cl-widget-toolbar-hamburger"></span>
         </a>
         <a routerLink="/user/{{userId}}/website/{{websiteId}}/page/{{pageId}}/widget/{{widget._id}}">
@@ -55,7 +55,7 @@
 
     <div *ngIf="widget.type == 'TEXT'">
       <div class="pull-right">
-        <a routerLink="/#" class="pull-right">
+        <a routerLink="{{widget._id}}" class="pull-right">
           <span class="glyphicon glyphicon-menu-hamburger cl-widget-toolbar-hamburger"></span>
         </a>
         <a routerLink="/user/{{userId}}/website/{{websiteId}}/page/{{pageId}}/widget/{{widget._id}}">
@@ -118,7 +118,7 @@
     <!--</div>-->
 
     <div *ngIf="widget.type == 'IMAGE'">
-      <a routerLink="/#" class="pull-right">
+      <a routerLink="{{widget._id}}" class="pull-right">
         <span class="glyphicon glyphicon-menu-hamburger cl-widget-toolbar-hamburger"></span>
       </a>
       <a routerLink="/user/{{userId}}/website/{{websiteId}}/page/{{pageId}}/widget/{{widget._id}}" class="pull-right">
@@ -131,10 +131,10 @@
     <div class="embed-responsive embed-responsive-16by9 youtube-widget" *ngIf="widget.type == 'YOUTUBE'">
       <iframe width="{{widget.width}}" height="360" [src]=getURL(widget.url) frameborder="0"
               allow="autoplay; encrypted-media" allowfullscreen></iframe>
-      <a href="#" class="pull-right">
+      <a href="{{widget._id}}" class="pull-right">
         <span class="glyphicon glyphicon-menu-hamburger cl-widget-toolbar-hamburger"></span>
       </a>
-      <a routerLink="/user/{{userId}}/website/{{websiteId}}/page/{{pageId}}/widget/{{widget._id}}" class="pull-right">
+      <a routerLink="{{widget._id}}" class="pull-right">
         <span class="glyphicon glyphicon-cog cl-widget-toolbar-cog"></span>
       </a>
     </div>
@@ -146,7 +146,7 @@
   <div class="container-fluid row">
     <div class="pull-right navbar-text">
 
-      <a routerLink="/user/{{userId}}" class="cl-icon-padding">
+      <a routerLink="../../../../.." class="cl-icon-padding">
         <span class="glyphicon glyphicon-user"></span>
       </a>
 
