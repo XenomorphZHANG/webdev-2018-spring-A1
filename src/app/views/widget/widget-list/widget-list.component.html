@@ -21,7 +21,7 @@
 
 <div class="container cl-container-padding">
     <div id="sortable" class="cl-body-padding" appSortable (newIndexes)="reorderWidgets($event)">
-  <div  *ngFor="let widget of widgets" ngSwitch="widget.widgetType">
+  <div  *ngFor="let widget of widgets | orderBy" ngSwitch="widget.widgetType">
     <div *ngIf="widget.type == 'HEADER'">
       <div class="pull-right">
         <a routerLink="/#" class="pull-right">

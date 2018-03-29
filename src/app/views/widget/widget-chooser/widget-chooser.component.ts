@@ -29,9 +29,9 @@ export class WidgetChooserComponent implements OnInit {
         this.widgetId = params['wgid'];
         this.widgetService.findAllWidgetsForPage(this.pageId).subscribe(
           (widgets: any[]) => {
-            console.log('tst1');
+            // console.log('tst1');
             this.widgets = widgets;
-            console.log('tst');
+            // console.log('tst');
         }
         );
       }
@@ -47,14 +47,14 @@ export class WidgetChooserComponent implements OnInit {
       height: '30%', rows: 0, deletable: false, formatted: false, placeholder: '',
       position: this.widgets.length
     }
-    console.log(newWidget);
+    // console.log(newWidget);
     console.log(this.widgets.length)
     this.widgetService.createWidget(this.pageId, newWidget).subscribe(
         (widget: any) => {
-          console.log(newWidget);
+          // console.log(newWidget);
           const url: any = '/user/' + this.userId + '/website/' + this.websiteId + '/page/' + this.pageId + '/widget/' + widget._id;
           this.router.navigate([url]);
-          console.log(newWidget);
+          // console.log(newWidget);
         }
     );
   }

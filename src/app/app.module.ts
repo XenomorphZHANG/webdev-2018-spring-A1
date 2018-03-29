@@ -41,6 +41,7 @@ import { WidgetHtmlComponent } from './views/widget/widget-edit/widget-html/widg
 import { WidgetTextComponent } from './views/widget/widget-edit/widget-text/widget-text.component';
 import { FlickrImageSearchComponent } from './views/widget/widget-edit/widget-image/flickr-image-search/flickr-image-search.component';
 import {FlickrService} from './services/flickr.service.client';
+import {OrderByPipe} from './views/widget/widget-list/order-by-pipe';
 
 @NgModule({
   declarations: [
@@ -64,6 +65,7 @@ import {FlickrService} from './services/flickr.service.client';
     WidgetHtmlComponent,
     WidgetTextComponent,
     FlickrImageSearchComponent,
+    OrderByPipe
   ],
   imports: [
     BrowserModule,
