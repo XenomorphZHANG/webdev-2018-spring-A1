@@ -8,12 +8,12 @@
       </a>
     </div>
     <div class="navbar-text pull-right">
-      <a routerLink="/user/{{userId}}/website/{{websiteId}}/page/new" class="cl-icon-padding cl-text-black">
+      <a routerLink="/user/website/{{websiteId}}/page/new" class="cl-icon-padding cl-text-black">
           <span class="glyphicon glyphicon-plus">
           </span>
       </a>
     </div>
-    <a class="navbar-brand cl-text-white cl-text-bold" routerLink="/user/{{userId}}/website/{{websiteId}}/page">
+    <a class="navbar-brand cl-text-white cl-text-bold" routerLink="/user/website/{{websiteId}}/page">
       Pages
     </a>
   </div>
@@ -23,8 +23,8 @@
 <div class="container-fluid cl-container-padding">
   <ul class="list-group cl-list-group-borderless">
     <li class="list-group-item cl-list-item-borderless" *ngFor="let page of pages">
-      <a routerLink="/user/{{userId}}/website/{{websiteId}}/page/{{page._id}}/widget">{{page.name}}</a>
-      <a routerLink="/user/{{userId}}/website/{{websiteId}}/page/{{page._id}}">
+      <a routerLink="/user/website/{{websiteId}}/page/{{page._id}}/widget">{{page.name}}</a>
+      <a routerLink="/user/website/{{websiteId}}/page/{{page._id}}">
         <span class="glyphicon glyphicon-cog pull-right"></span>
       </a>
     </li>
@@ -34,7 +34,7 @@
 <nav class="navbar navbar-default navbar-fixed-bottom">
   <div class="container-fluid row">
     <div class="pull-right navbar-text">
-      <a routerLink="/user/{{userId}}" class="cl-icon-padding">
+      <a routerLink="/profile" class="cl-icon-padding">
         <span class="glyphicon glyphicon-user"></span>
       </a>
     </div>

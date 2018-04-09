@@ -1,48 +1,78 @@
-<div class="container-fluid cl-body-padding">
-  <div *ngIf="errorFlag" class="alert alert-danger">
-    {{errorMsg}}
-  </div>
-  <h1>Register</h1>
-  <form (ngSubmit)="register(username, password, verifyPassword)" #f="ngForm">
-
-    <div class="form-group">
-      <!--<input type="text" name="username" placeholder="username" class="form-control" ngModel required #username="ngModel">-->
-      <input [(ngModel)]="username" type="text" name="username" placeholder="username" class="form-control"
-             [ngModelOptions]="{standalone: true}">
-    </div>
-    <!--<span class="help-block" *ngIf="!username.valid && username.touched">-->
-      <!--Please enter username!-->
-    <!--</span>-->
-
-    <div class="form-group">
-      <!--<input type="password" name="password" placeholder="password" class="form-control" ngModel required #password="ngModel">-->
-      <input [(ngModel)]="password" type="password" name="password" placeholder="password" class="form-control"
-             [ngModelOptions]="{standalone: true}">
-    </div>
-    <div class="form-group">
-      <!--<input type="password" name="verifyPassword" placeholder="verify password" class="form-control" ngModel required #verifyPassword="ngModel">-->
-      <input [(ngModel)]="verifyPassword" type="password" name="verifyPassword" placeholder="verify password" class="form-control"
-             [ngModelOptions]="{standalone: true}">
-    </div>
-    <div class="form-group">
-      <input [(ngModel)]="firstName" type="text" name="firstName" placeholder="First Name" class="form-control"
-             [ngModelOptions]="{standalone: true}">
-      <!--<input type="text" name="firstName" placeholder="First Name" class="form-control" ngModel required #verifyPassword="ngModel">-->
-    </div>
-    <div class="form-group">
-      <input [(ngModel)]="lastName" type="text" name="lastName" placeholder="Last Name" class="form-control"
-             [ngModelOptions]="{standalone: true}">
-      <!--<input type="text" name="lastName" placeholder="Last Name" class="form-control" ngModel required #verifyPassword="ngModel">-->
-    </div>
+<!--<div class="container-fluid cl-body-padding">-->
+  <!--<div *ngIf="errorFlag" class="alert alert-danger">-->
+    <!--{{errorMsg}}-->
+  <!--</div>-->
+  <!--<h1>Register</h1>-->
+  <!--<form (ngSubmit)="register()" #f="ngForm">-->
 
     <!--<div class="form-group">-->
-      <!--<button [disabled]="!f.valid" class="btn btn-primary btn-block">Register</button>-->
+      <!--&lt;!&ndash;<input type="text" name="username" placeholder="username" class="form-control" ngModel required #username="ngModel">&ndash;&gt;-->
+      <!--<input [(ngModel)]="username" type="text" name="username" placeholder="username" class="form-control"-->
+             <!--[ngModelOptions]="{standalone: true}">-->
     <!--</div>-->
-    <div class="form-group">
-      <button class="btn btn-primary btn-block">Register</button>
+    <!--&lt;!&ndash;<span class="help-block" *ngIf="!username.valid && username.touched">&ndash;&gt;-->
+      <!--&lt;!&ndash;Please enter username!&ndash;&gt;-->
+    <!--&lt;!&ndash;</span>&ndash;&gt;-->
+
+    <!--<div class="form-group">-->
+      <!--&lt;!&ndash;<input type="password" name="password" placeholder="password" class="form-control" ngModel required #password="ngModel">&ndash;&gt;-->
+      <!--<input [(ngModel)]="password" type="password" name="password" placeholder="password" class="form-control"-->
+             <!--[ngModelOptions]="{standalone: true}">-->
+    <!--</div>-->
+    <!--<div class="form-group">-->
+      <!--&lt;!&ndash;<input type="password" name="verifyPassword" placeholder="verify password" class="form-control" ngModel required #verifyPassword="ngModel">&ndash;&gt;-->
+      <!--<input [(ngModel)]="verify" type="password" name="verifyPassword" placeholder="verify password" class="form-control"-->
+             <!--[ngModelOptions]="{standalone: true}">-->
+    <!--</div>-->
+    <!--<div class="form-group">-->
+      <!--<input [(ngModel)]="firstName" type="text" name="firstName" placeholder="First Name" class="form-control"-->
+             <!--[ngModelOptions]="{standalone: true}">-->
+      <!--&lt;!&ndash;<input type="text" name="firstName" placeholder="First Name" class="form-control" ngModel required #verifyPassword="ngModel">&ndash;&gt;-->
+    <!--</div>-->
+    <!--<div class="form-group">-->
+      <!--<input [(ngModel)]="lastName" type="text" name="lastName" placeholder="Last Name" class="form-control"-->
+             <!--[ngModelOptions]="{standalone: true}">-->
+      <!--&lt;!&ndash;<input type="text" name="lastName" placeholder="Last Name" class="form-control" ngModel required #verifyPassword="ngModel">&ndash;&gt;-->
+    <!--</div>-->
+
+    <!--&lt;!&ndash;<div class="form-group">&ndash;&gt;-->
+      <!--&lt;!&ndash;<button [disabled]="!f.valid" class="btn btn-primary btn-block">Register</button>&ndash;&gt;-->
+    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+    <!--<div class="form-group">-->
+      <!--<button class="btn btn-primary btn-block">Register</button>-->
+    <!--</div>-->
+    <!--<div class="form-group">-->
+      <!--<a routerLink="/login" class="btn btn-danger btn-block">Cancel</a>-->
+    <!--</div>-->
+  <!--</form>-->
+<!--</div>-->
+
+<div class="container">
+  <h1>Register</h1>
+  <form (ngSubmit) = "register()" #f="ngForm">
+    <div *ngIf="error"
+         class="alert alert-danger">
+      <span>{{error}}</span>
     </div>
     <div class="form-group">
-      <a routerLink="/login" class="btn btn-danger btn-block">Cancel</a>
+      <label>Username</label>
+      <input placeholder="username" name="username" type="text" class="form-control"
+             ngModel required #username="ngModel"/>
+      <span class="help-block" *ngIf="!username.valid && username.touched">*Please enter username!</span>
     </div>
+    <div class="form-group">
+      <label>Password</label>
+      <input placeholder="password" name="password" type="password" class="form-control"
+             ngModel required #password="ngModel"/>
+      <span class="help-block" *ngIf="!password.valid && password.touched">*Please enter password!</span>
+    </div>
+    <div class="form-group">
+      <label>Verify Password</label>
+      <input placeholder="verify password" name="verify" type="password" class="form-control"
+             ngModel required #verify="ngModel"/>
+      <span class="help-block" *ngIf="!verify.valid && verify.touched">*Please enter password again!</span>
+    </div>
+    <button class="btn btn-primary btn-block" type="submit" [disabled]="!f.valid">Register</button>
+    <button class="btn btn-danger btn-block" type="button" routerLink="/login">Cancel</button>
   </form>
 </div>

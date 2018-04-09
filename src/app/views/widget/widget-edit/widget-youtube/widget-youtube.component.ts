@@ -44,7 +44,7 @@ export class WidgetYoutubeComponent implements OnInit {
     // this.router.navigate(['/user/' + this.userId + '/website/' + this.websiteId + '/page/' + this.pageId + '/widget']);
       this.widgetService.updateWidget(this.widgetId, updatedwidget).subscribe(
           (widget: any) => {
-              const url: any = '/user/' + this.userId + '/website/' + this.websiteId + '/page/' + this.pageId + '/widget';
+              const url: any = '/user/website/' + this.websiteId + '/page/' + this.pageId + '/widget';
               this.router.navigate([url]);
           }
       );
@@ -55,7 +55,7 @@ export class WidgetYoutubeComponent implements OnInit {
     // this.router.navigate(['/user/' + this.userId + '/website/' + this.websiteId + '/page/' + this.pageId + '/widget']);
       this.widgetService.deleteWidget(this.widgetId).subscribe(
           (widget: any) => {
-              const url: any = '/user/' + this.userId + '/website/' + this.websiteId + '/page/' + this.pageId + '/widget';
+              const url: any = '/user/website/' + this.websiteId + '/page/' + this.pageId + '/widget';
               this.router.navigate([url]);
           }
       );

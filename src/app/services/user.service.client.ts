@@ -6,13 +6,15 @@ import 'rxjs/Rx';
 import { environment } from '../../environments/environment';
 import { Router } from '@angular/router';
 import { User } from '../models/user.model.client';
+import { SharedService } from './shared.service';
 
 @Injectable()
 export class UserService {
 
-  constructor(private http: Http) { }
+  constructor(private http: Http, private sharedService: SharedService, private router: Router) { }
 
   baseUrl = environment.baseUrl;
+  options = new RequestOptions();
   // users: User[] = [
   //   { _id: '123', username: 'alice', password: 'alice', firstName: 'Alice', lastName: 'Wonder', emailAddress: '' },
   //   { _id: '234', username: 'bob', password: 'bob', firstName: 'Bob', lastName: 'Marley', emailAddress: '' },
@@ -30,6 +32,56 @@ export class UserService {
         return res.json();
       }
     );
+  }
+
+  register(username: String, password: String) {
+    this.options.withCredentials = true;
+    const credentials = {
+      username : username,
+      password : password
+    };
+    return this.http.post(this.baseUrl + '/api/register', credentials, this.options)
+      .map((res: Response) => {
+          return res.json();
+        }
+      );
+  }
+
+  login(username: String, password: String) {
+    this.options.withCredentials = true;
+    const credentials = {
+      username : username,
+      password : password
+    };
+    return this.http.post(this.baseUrl + '/api/login', credentials, this.options)
+      .map((res: Response) => {
+          return res.json();
+        }
+      );
+  }
+
+  logout() {
+    this.options.withCredentials = true;
+    return this.http.post(this.baseUrl + '/api/logout', '', this.options)
+      .map((res: Response) => {
+          const data = res;
+        }
+      );
+  }
+
+  loggedIn() {
+    this.options.withCredentials = true;
+    return this.http.post(this.baseUrl + '/api/loggedIn', '', this.options)
+      .map((res: Response) => {
+        const user = res.json();
+        if (user !== 0) {
+          this.sharedService.user = user; // setting user so as to share with all components
+          return true;
+        } else {
+          this.router.navigate(['/login']);
+          return false;
+        }
+      });
   }
 
   findUserById(userId: String) {
@@ -61,19 +113,19 @@ export class UserService {
     );
   }
 
-  findUserByCredential(username: String, password: String) {
-    // for (let i = 0; i < this.users.length; i++) {
-    //   if (this.users[i].username === username && this.users[i].password === password) {
-    //     return this.users[i];
-    //   }
-    // }
-    const url = this.baseUrl + '/api/user?username=' + username + '&password=' + password;
-    return this.http.get(url).map(
-      (res: Response) => {
-        return res.json();
-      }
-    );
-  }
+  // findUserByCredential(username: String, password: String) {
+  //   // for (let i = 0; i < this.users.length; i++) {
+  //   //   if (this.users[i].username === username && this.users[i].password === password) {
+  //   //     return this.users[i];
+  //   //   }
+  //   // }
+  //   const url = this.baseUrl + '/api/user?username=' + username + '&password=' + password;
+  //   return this.http.get(url).map(
+  //     (res: Response) => {
+  //       return res.json();
+  //     }
+  //   );
+  // }
 
   updateUser(userId: String, user: User) {
     // for (let i = 0; i < this.users.length; i++) {
@@ -103,4 +155,3 @@ export class UserService {
     });
   }
 }
-

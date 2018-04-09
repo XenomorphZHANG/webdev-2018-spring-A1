@@ -345,6 +345,7 @@ import {WidgetService} from '../../../../services/widget.service.client';
 import {Widget} from '../../../../models/widget.model.client';
 import {NgForm} from '@angular/forms';
 import {environment} from '../../../../../environments/environment';
+import {SharedService} from '../../../../services/shared.service';
 
 @Component({
     selector: 'app-widget-image',
@@ -365,7 +366,8 @@ export class WidgetImageComponent implements OnInit {
     widget: any = {};
     baseUrl: String = environment.baseUrl;
 
-    constructor(private activatedRoute: ActivatedRoute, private widgetService: WidgetService, private route: Router) {}
+    constructor(private activatedRoute: ActivatedRoute, private widgetService: WidgetService, private route: Router,
+                private sharedService: SharedService) {}
 
     upload() {
         // this.name = this.imageForm.value.headerName;
@@ -400,7 +402,8 @@ export class WidgetImageComponent implements OnInit {
     ngOnInit() {
         this.activatedRoute.params.subscribe(
             (params: any) => {
-                this.userId = params['uid'];
+                // const user = this.sharedService.user;
+                // this.userId = user['_id'];
                 this.websiteId = params['wid'];
                 this.pageID = params['pid'];
                 this.wgid = params['wgid'];

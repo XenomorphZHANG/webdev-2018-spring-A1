@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { PageService } from '../../../services/page.service.client';
 import { Page } from '../../../models/page.model.client';
+import {SharedService} from '../../../services/shared.service';
 
 @Component({
   selector: 'app-page-edit',
@@ -22,13 +23,15 @@ export class PageEditComponent implements OnInit {
   constructor(
     private pageService: PageService,
     private activatedRoute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private sharedService: SharedService
   ) { }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(
       (params: any) => {
-        this.userId = params['uid'];
+        const user = this.sharedService.user;
+        this.userId = user._id;
         this.pageId = params['pid'];
         this.websiteId = params['wid'];
         this.pageService.findPageById(this.pageId).subscribe(
@@ -46,7 +49,7 @@ export class PageEditComponent implements OnInit {
       this.pageService.updatePage(this.pageId, u_page).subscribe(
         (page: any) => {
           this.updatedPage = page;
-          const url: any = '/user/' + this.userId + '/website/' + this.websiteId + '/page';
+          const url: any = '/user/website/' + this.websiteId + '/page';
           this.router.navigate([url]);
         }
       );
@@ -60,7 +63,7 @@ export class PageEditComponent implements OnInit {
     // this.router.navigate(['/user/' + this.userId + '/website/' + this.websiteId + '/page']);
     this.pageService.deletePage(this.pageId).subscribe(
       (page: any) => {
-        const url = '/user/' + this.userId + '/website/' + this.websiteId + '/page';
+        const url = '/user/website/' + this.websiteId + '/page';
         this.router.navigate([url]);
       }
     );

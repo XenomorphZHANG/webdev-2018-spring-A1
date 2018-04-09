@@ -52,7 +52,7 @@ export class WidgetChooserComponent implements OnInit {
     this.widgetService.createWidget(this.pageId, newWidget).subscribe(
         (widget: any) => {
           // console.log(newWidget);
-          const url: any = '/user/' + this.userId + '/website/' + this.websiteId + '/page/' + this.pageId + '/widget/' + widget._id;
+          const url: any = '/user/website/' + this.websiteId + '/page/' + this.pageId + '/widget/' + widget._id;
           this.router.navigate([url]);
           // console.log(newWidget);
         }

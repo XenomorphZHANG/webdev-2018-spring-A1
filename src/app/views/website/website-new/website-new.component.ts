@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { WebsiteService } from '../../../services/website.service.client';
 import { Website } from '../../../models/website.model.client';
+import {SharedService} from '../../../services/shared.service';
 
 @Component({
   selector: 'app-website-new',
@@ -11,13 +12,14 @@ import { Website } from '../../../models/website.model.client';
 })
 export class WebsiteNewComponent implements OnInit {
 
-  userId: String;
+  userId: string;
   newWebsite: any = {};
   websites: any[];
 
   constructor(private websiteService: WebsiteService,
               private activatedRoute: ActivatedRoute,
-              private router: Router) { }
+              private router: Router,
+              private sharedService: SharedService) { }
 
   ngOnInit() {
     // this.activatedRoute.params.subscribe(
@@ -29,7 +31,9 @@ export class WebsiteNewComponent implements OnInit {
     // this.websites = this.websiteService.findWebsitesByUser(this.developerId);
     this.activatedRoute.params.subscribe(
       (params: any) => {
-        this.userId = params.uid;
+        const user = this.sharedService.user;
+        this.userId = user['_id'];
+        // this.newWebsite = new Website('', '', this.userId, '');
         this.websiteService.findAllWebsitesByUser(this.userId).subscribe(
           (websites: any[]) => {
             this.websites = websites;
@@ -51,7 +55,7 @@ export class WebsiteNewComponent implements OnInit {
       // this.router.navigate(['/user/' + this.developerId + '/website']);
       this.websiteService.createWebsite(this.userId, newWebsite).subscribe(
         (website: any) => {
-          const url: any = '/user/' + this.userId + '/website';
+          const url: any = '/user/website';
           this.router.navigate([url]);
         },
       );

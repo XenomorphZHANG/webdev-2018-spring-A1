@@ -272,13 +272,12 @@ module.exports = function (app) {
     var width = req.body.width;
     var myFile = req.file;
 
-    var userId = req.body.userId;
+    // var userId = req.body.userId;
     var websiteId = req.body.websiteId;
     var pageId = req.body.pageId;
 
-    // condition when myFile is null
     if (myFile == null) {
-      res.redirect(baseUrl + "/user/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget/" + widgetId);
+      res.redirect(baseUrl + "/user/website/" + websiteId + "/page/" + pageId + "/widget/" + widgetId);
       return;
     }
 
@@ -301,7 +300,7 @@ module.exports = function (app) {
           res.sendStatus(404).send(err);
         });
 
-    res.redirect(baseUrl + "/user/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget/" + widgetId);
+    res.redirect(baseUrl + "/user/website/" + websiteId + "/page/" + pageId + "/widget/" + widgetId);
   }
 
   function createWidget(req, res) {

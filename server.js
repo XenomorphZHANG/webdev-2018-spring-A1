@@ -3,11 +3,14 @@ const bodyParser = require('body-parser');
 const app = express();
 const path = require('path');
 const http = require('http');
+var cookieParser = require('cookie-parser');
+var session      = require('express-session');
+var passport = require('passport');
 
 // var db = mongoose.connect('mongodb://chrismzyy@hotmail.com:135246Abcd@ds263847.mlab.com:63847/heroku_khn0t993');
 
-var connectionString = 'mongodb://yiyangzhang:135246abcd@ds263847.mlab.com:63847/heroku_khn0t993';
-// var connectionString = 'mongodb://localhost:27017/webdev';
+// var connectionString = 'mongodb://yiyangzhang:135246abcd@ds263847.mlab.com:63847/heroku_khn0t993';
+var connectionString = 'mongodb://localhost:27017/webdev';
 var mongoose = require("mongoose");
 
 mongoose.createConnection(connectionString);
@@ -15,18 +18,33 @@ mongoose.createConnection(connectionString);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+var secret = 'This is a secret';
+if (process.env.SESSION_SECRET) {
+  secret = process.env.SESSION_SECRET;
+}
+app.use(cookieParser());
+app.use(session({ secret: secret, resave: true, saveUninitialized: true }));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use(express.static(path.join(__dirname, 'dist')));
 app.use(express.static(path.join(__dirname, 'src/assets')));
 
+// app.use(cookieParser());
+// app.use(session({ secret: process.env.SESSION_SECRET }));
 
+// var baseUrl = "http://localhost:4200";
+var baseUrl = "https://web2018.herokuapp.com"
 
 //CORS
 app.use(function(reg, res, next){
-  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Origin", baseUrl);
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE, OPTIONS');
+  res.header("Access-Control-Allow-Credentials", "true");
   next();
-});
+})
 
 
 const port=process.env.PORT || '5000';

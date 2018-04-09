@@ -195,7 +195,7 @@
       </form>
     </div>
   </form>
-  <a class="btn btn-primary btn-block " [routerLink]="['/user/'+userId+'/website/'+websiteId+'/page/'+pageID+'/widget/'+wgid+'/flickr']">Search Image</a>
+  <a class="btn btn-primary btn-block " [routerLink]="['/user/website/'+websiteId+'/page/'+pageID+'/widget/'+wgid+'/flickr']">Search Image</a>
   <!--<button class="btn btn-primary btn-block" type="submit" [disabled]="!f.valid">Upload Image</button>-->
   <button class="btn btn-danger  btn-block" (click)="delete()">Delete</button>
 </div>
@@ -203,7 +203,7 @@
 <nav class="navbar navbar-default navbar-fixed-bottom">
   <div class="container-fluid row">
     <div class="pull-right navbar-text">
-      <a routerLink="../../../../../.." class="cl-icon-padding">
+      <a routerLink="/profile" class="cl-icon-padding">
         <span class="glyphicon glyphicon-user"></span>
       </a>
     </div>

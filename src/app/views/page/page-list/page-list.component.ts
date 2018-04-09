@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-
+import {SharedService} from '../../../services/shared.service';
 import { PageService } from '../../../services/page.service.client';
 // import { Page } from '../../../models/page.model.client';
 import {WebsiteService} from '../../../services/website.service.client';
@@ -21,12 +21,14 @@ export class PageListComponent implements OnInit {
   constructor(private pageService: PageService,
               private websiteService: WebsiteService,
               private activatedRoute: ActivatedRoute,
-              private userService: UserService) { }
+              private userService: UserService,
+              private shardService: SharedService) { }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(
       (params: any) => {
-        this.userId = params['uid'];
+        const user = this.shardService.user;
+        this.userId = user._id;
         this.websiteId = params['wid'];
         this.pageService.findAllPagesForWebsite(this.websiteId).subscribe(
           (pages: any[]) => {

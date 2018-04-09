@@ -37,7 +37,7 @@ export class FlickrImageSearchComponent implements OnInit {
   ngOnInit() {
     this.activatedRoute.params.subscribe(
       (params: any) => {
-        this.userId = params['uid'];
+        // this.userId = params['uid'];
         this.websiteId = params['wid'];
         this.pageId = params['pid'];
         this.widgetId = params['wgid'];
@@ -112,7 +112,7 @@ export class FlickrImageSearchComponent implements OnInit {
         (data: any) => {
           const result = data;
           if (result) {
-            this.router.navigate(['/user/' + this.userId + '/website/' + this.websiteId + '/page/' + this.pageId + '/widget/' + this.widgetId]);
+            this.router.navigate(['/user/website/' + this.websiteId + '/page/' + this.pageId + '/widget/' + this.widgetId]);
           } else {
             this.error = 'failed!';
           }

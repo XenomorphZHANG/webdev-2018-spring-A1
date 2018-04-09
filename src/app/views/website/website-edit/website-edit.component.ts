@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { WebsiteService } from '../../../services/website.service.client';
 import { Website } from '../../../models/website.model.client';
+import {SharedService} from '../../../services/shared.service';
 
 @Component({
   selector: 'app-website-edit',
@@ -20,7 +21,8 @@ export class WebsiteEditComponent implements OnInit {
 
   constructor(private websiteService: WebsiteService,
               private activatedRoute: ActivatedRoute,
-              private router: Router) { }
+              private router: Router,
+              private sharedService: SharedService) { }
 
   // ngOnInit() {
   //   this.activatedRoute.params.subscribe(
@@ -74,7 +76,8 @@ export class WebsiteEditComponent implements OnInit {
   ngOnInit() {
     this.activatedRoute.params.subscribe(
       (params: any) => {
-        this.developerId = params['uid'];
+        const user = this.sharedService.user;
+        this.developerId = user['_id'];
         this.websiteId = params['wid'];
         this.websiteService.findWebsiteById(this.websiteId).subscribe(
           (website: any) => {
@@ -101,7 +104,7 @@ export class WebsiteEditComponent implements OnInit {
       // this.router.navigate(['/user/' + this.developerId + '/website']);
       this.websiteService.updateWebsite(this.websiteId, updatedWebsite).subscribe(
         (website: any) => {
-          const url: any = '/user/' + this.developerId + '/website';
+          const url: any = '/user/website';
           this.router.navigate([url]);
         }
       );
@@ -113,7 +116,7 @@ export class WebsiteEditComponent implements OnInit {
     // this.router.navigate(['/user/' + this.developerId + '/website']);
     this.websiteService.deleteWebsite(this.websiteId).subscribe(
       (website: Website) => {
-        const url: any = '/user/' + this.developerId + '/website';
+        const url: any = '/user/website';
         this.router.navigate([url]);
       },
     );

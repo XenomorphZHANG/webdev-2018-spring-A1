@@ -17,7 +17,8 @@ import { ProfileComponent } from './views/user/profile/profile.component';
 // website components
 import { WebsiteListComponent } from './views/website/website-list/website-list.component';
 
-
+import {SharedService} from './services/shared.service';
+import {AuthGuard} from './services/auth-guard.service';
 
 // client side services
 import { UserService } from './services/user.service.client';
@@ -74,7 +75,7 @@ import {OrderByPipe} from './views/widget/widget-list/order-by-pipe';
     HttpModule,
     QuillEditorModule
   ],
-  providers: [UserService, WebsiteService, WidgetService, PageService, FlickrService],
+  providers: [UserService, WebsiteService, WidgetService, PageService, FlickrService, SharedService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
