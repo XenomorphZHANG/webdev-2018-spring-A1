@@ -35,7 +35,7 @@ app.use(express.static(path.join(__dirname, 'src/assets')));
 // app.use(session({ secret: process.env.SESSION_SECRET }));
 
 // var baseUrl = "http://localhost:4200";
-var baseUrl = "https://web2018.herokuapp.com"
+var baseUrl = "https://test-for-cs5610.herokuapp.com"
 
 //CORS
 app.use(function(reg, res, next){
